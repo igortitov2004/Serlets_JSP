@@ -7,42 +7,48 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<table border="1">
-    <tr>
-        <th> ID работника</th>
-        <th> Имя </th>
-        <th> Фамилия </th>
-        <th> Номер телефона </th>
-        <th> Должность </th>
-    </tr>
+
     <% StuffDAO stuffDAO = new StuffDAO();
+    if(stuffDAO.getListStuff() != null){%>
+    <table border="1">
+        <tr>
+            <th> ID работника</th>
+            <th> Имя </th>
+            <th> Фамилия </th>
+            <th> Номер телефона </th>
+            <th> Должность </th>
+            <th> Удаление </th>
+        </tr>
+<%
+     for(StuffDTO stuffDTO:stuffDAO.getListStuff()){
+     %>
+     <tr>
+        <th><%= stuffDTO.getId_staff()%></th>
+        <th> <%= stuffDTO.getFirstName()%></th>
+        <th> <%= stuffDTO.getLastName()%></th>
+        <th> <%= stuffDTO.getPhoneNumber()%></th>
+        <th> <%= stuffDTO.getRole()%></th>
+        <th><a href="/deleteStuff?id=<%=stuffDTO.getId_staff()%>" style="text-decoration: none">Удалить</a>
+             </th>
+     </tr>
+     <%
+     }%> </table> <%
+     }else{%>
+          <h3>Работники отсутствуют!</h3>
+        <%}
 
-   for(StuffDTO stuffDTO:stuffDAO.getListStuff()){
-     out.print("<tr><th>"+stuffDTO.getId_staff()+"</th>");
-     out.print("<th>"+stuffDTO.getFirstName()+"</th>");
-     out.print("<th>"+stuffDTO.getLastName()+"</th>");
-     out.print("<th>"+stuffDTO.getPhoneNumber()+"</th>");
-     out.print("<th>"+stuffDTO.getRole()+"</th></tr>");
-   }
 %>
-</table>
 
-<%--%>--%>
-<%--<tr>--%>
-<%--    <th><%= stuffDTO.getId_staff()%> </th>--%>
-<%--    <th> <%= stuffDTO.getFirstName()%></th>--%>
-<%--    <th> <%= stuffDTO.getLastName()%></th>--%>
-<%--    <th> <%= stuffDTO.getPhoneNumber()%></th>--%>
-<%--    <th> <%= stuffDTO.getRole()%></th>--%>
-<%--</tr>--%>
-<%--<%--%>
-echo "# Serlets_JSP" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/igortitov2004/Serlets_JSP.git
-git push -u origin main
+<h1>Добавить работника</h1>
+<form action="/addStuff" method="post">
+    Имя:<input type="text" required id = "firstName" name="firstName"/><br><br>
+    Фамилия:<input type="text"  required id = "lastName" name="lastName"/><br><br>
+    Номер телефона:<input type="text" required id = "phoneNumber" name="phoneNumber"/><br><br>
+    Должность:<input type="text" required id = "role" name="role"/><br><br>
+    <input type="submit" value="Добавить работника" />
+</form>
+
+
 
 
 </body>
