@@ -6,6 +6,8 @@
 <head>
     <title>JSP - Hello World</title>
 </head>
+
+<h3 href="enterInSystem" style="text-decoration: none">Выйти из аккаунта</h3><br>
 <body>
 
     <% StuffDAO stuffDAO = new StuffDAO();
@@ -18,6 +20,7 @@
             <th> Номер телефона </th>
             <th> Должность </th>
             <th> Удаление </th>
+            <th> Изменение </th>
         </tr>
 <%
      for(StuffDTO stuffDTO:stuffDAO.getListStuff()){
@@ -30,6 +33,8 @@
         <th> <%= stuffDTO.getRole()%></th>
         <th><a href="/deleteStuff?id=<%=stuffDTO.getId_staff()%>" style="text-decoration: none">Удалить</a>
              </th>
+         <th><a href="/stuffEdit?id=<%=stuffDTO.getId_staff()%>" style="text-decoration: none">Изменить</a>
+         </th>
      </tr>
      <%
      }%> </table> <%

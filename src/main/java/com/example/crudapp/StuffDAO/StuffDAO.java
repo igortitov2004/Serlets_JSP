@@ -26,7 +26,6 @@ public class StuffDAO {
                  stuff.setLastName(resultSet.getString(3));
                  stuff.setPhoneNumber(resultSet.getString(4));
                  stuff.setRole(resultSet.getString(5));
-//                 stuff.setAge(resultSet.getInt(6));
                  stuffList.add(stuff);
              }
          }catch (SQLException e){
@@ -38,10 +37,11 @@ public class StuffDAO {
          return stuffList;
     }
 
-    public void deleteStuff(Integer id){
+    public void deleteStuff(Integer id ){
         try {
-            preparedStatement = dbConnector.getConnection().prepareStatement("DELETE FROM stuff WHERE id_stuff=?");
+            preparedStatement = dbConnector.getConnection().prepareStatement("DELETE FROM stuff WHERE id_stuff=? ");
             preparedStatement.setInt(1,id);
+
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -51,7 +51,6 @@ public class StuffDAO {
     public void addStaff(StuffDTO stuffDTO){
         try{
             preparedStatement = dbConnector.getConnection().prepareStatement("INSERT INTO stuff (first_name,last_name,phone_number,role) VALUES(?,?,?,?)");
-
             preparedStatement.setString(1,stuffDTO.getFirstName());
             preparedStatement.setString(2,stuffDTO.getLastName());
             preparedStatement.setString(3,stuffDTO.getPhoneNumber());
@@ -60,6 +59,19 @@ public class StuffDAO {
 
         }catch (SQLException e){
             e.printStackTrace();
+        }
+    }
+    public void editStuff(StuffDTO stuffDTO){
+        try{
+            preparedStatement = dbConnector.getConnection().prepareStatement("UPDATE stuff SET first_name=?,last_name=?,phone_number=?,role=? WHERE id_stuff=?");
+            preparedStatement.setString(1,stuffDTO.getFirstName());
+            preparedStatement.setString(2,stuffDTO.getLastName());
+            preparedStatement.setString(3,stuffDTO.getPhoneNumber());
+            preparedStatement.setString(4,stuffDTO.getRole());
+            preparedStatement.setInt(5,stuffDTO.getId_staff());
+            preparedStatement.execute();
+        }catch (SQLException e){
+           e.printStackTrace();
         }
     }
 

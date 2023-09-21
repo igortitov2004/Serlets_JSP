@@ -14,6 +14,37 @@
         <url-pattern>/stuff</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>StuffEditJSP</servlet-name>
+        <jsp-file>/stuffEdit.jsp</jsp-file>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StuffEditJSP</servlet-name>
+        <url-pattern>/stuffEdit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegistrationJSP</servlet-name>
+        <jsp-file>/registration.jsp</jsp-file>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistrationJSP</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AuthorizationJSP</servlet-name>
+        <jsp-file>/enterInSystem.jsp</jsp-file>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthorizationJSP</servlet-name>
+        <url-pattern>/enterInSystem</url-pattern>
+    </servlet-mapping>
+
+
 
 
 </web-app>
