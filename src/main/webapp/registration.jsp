@@ -9,15 +9,17 @@
 <html>
 <head>
     <title>Title</title>
-    <h3>Изменение данных о работнике</h3><br>
-    <form action="/addUser" method="post">
-        Логин:<input type="text" required  name="login"/><br><br>
-        Пароль:<input type="text"  required  name="password"/><br><br>
-        Email:<input type="text" required  name="email"/><br><br>
-        <input type="submit" value="Регистрация" />
-    </form>
-</head>
-<body>
+    <h3 ><a href="/enterInSystem"  style="color:red;text-decoration: none"  >Назад</a></h3><br>
+    <h3> Регистрация </h3>
 
+</head>
+
+<body>
+<form action="/addUser" method="post">
+    Логин:<input type="text" required  name="login"/><br><br>
+    Пароль:<input type="text"  required  name="password"/><br><br>
+    Email:<input type="text" required  name="email"/><br><br>
+    <input type="submit" value="Подтвердить" />
+</form>
 </body>
 </html>

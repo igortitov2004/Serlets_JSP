@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDAO {
     private final DBConnector dbConnector = DBConnector.INSTANCE;
@@ -68,6 +69,21 @@ public class UserDAO {
             }
         }
         return false;
+    }
+
+
+
+
+
+    public String getRole(String login){
+
+        List<UserDTO> userDTOList = getListUsers();
+        for (UserDTO user:userDTOList) {
+            if(Objects.equals(user.getLogin(), login)){
+                return user.getRole();
+            }
+        }
+        return null;
     }
 //    public void editStuff(StuffDTO stuffDTO){
 //        try{

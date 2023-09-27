@@ -26,6 +26,19 @@ public class ServletRegistration extends HttpServlet {
         newUser.setEmail(request.getParameter("email"));
         UserDAO userDAO = new UserDAO();
         userDAO.addUser(newUser);
-        response.sendRedirect("/stuff");
+
+
+        try{
+            for (Cookie cookie:request.getCookies()) {
+                Cookie cookie1 = new Cookie(cookie.getName(),"");
+                cookie1.setMaxAge(0);
+                response.addCookie(cookie1);
+            }
+        }catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute("user",null);
+        response.sendRedirect("/enterInSystem");
     }
 }
